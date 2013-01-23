@@ -3,6 +3,7 @@
 
 	<persistence-unit name="data-spi" transaction-type="RESOURCE_LOCAL">
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<class>com.catify.processengine.serviceproviders.jpa.beans.DataObjectBean</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}" /> 
 		</properties>
