@@ -14,14 +14,15 @@ public class JpaDataObjectSpi extends DataObjectSPI {
 	public JpaDataObjectSpi() {
 		this.implementationId = "jpa";
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(
-		        new String[] {"classpath:META-INF/spring/application-context.xml"});
+				new String[] { "classpath:META-INF/spring/application-context.xml" });
 		appContext.start();
-		this.dataObjectRepository = appContext.getBean(DataObjectRepository.class);
+		this.dataObjectRepository = appContext
+				.getBean(DataObjectRepository.class);
 	}
 
 	@Override
 	public void saveObject(String uniqueProcessId, String objectId,
-			String instanceId, Object dataObject) {	
+			String instanceId, Object dataObject) {
 		System.out.println(dataObjectRepository);
 		dataObjectRepository.save(new DataObjectBean(getObjectKey(
 				uniqueProcessId, objectId, instanceId), uniqueProcessId,
@@ -31,8 +32,9 @@ public class JpaDataObjectSpi extends DataObjectSPI {
 	@Override
 	public Object loadObject(String uniqueProcessId, String objectId,
 			String instanceId) {
-		return SerializationUtils.deserialize(dataObjectRepository.findOne(getObjectKey(uniqueProcessId,
-				objectId, instanceId)).getDataObject());
+		return SerializationUtils.deserialize(dataObjectRepository.findOne(
+				getObjectKey(uniqueProcessId, objectId, instanceId))
+				.getDataObject());
 	}
 
 	@Override

@@ -15,7 +15,6 @@ public class DataObjectBean {
 	private String uniqueProcessId;
 	private String objectId;
 	private String instanceId;
-	
 
 	private byte[] dataObject;
 	
