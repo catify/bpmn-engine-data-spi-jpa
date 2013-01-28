@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.catify.processengine.serviceproviders.jpa.beans.DataObjectBean;
+import com.catify.processengine.serviceproviders.jpa.beans.DataObjectEntity;
 import com.catify.processengine.serviceproviders.jpa.repositories.DataObjectRepository;
 
 @Transactional
@@ -27,7 +27,7 @@ public class JpaServiceProviderTest {
 	public void testDataObjectRepository() {
 		String id = "42";
 		
-		DataObjectBean dataObjectBean = new DataObjectBean(id, "uniqueProcessId", "objectId", "instanceId", "dataObject");
+		DataObjectEntity dataObjectBean = new DataObjectEntity(id, "uniqueProcessId", "objectId", "instanceId", "dataObject");
 		
 		dataObjectRepository.save(dataObjectBean);
 		

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import org.springframework.util.SerializationUtils;
 
 @Entity @Table(name="CATIFY_DATA_OBJECT_SPI")
-public class DataObjectBean {
+public class DataObjectEntity {
 	
 	@Id
 	private String id;
@@ -18,11 +18,11 @@ public class DataObjectBean {
 
 	private byte[] dataObject;
 	
-	public DataObjectBean() {
+	public DataObjectEntity() {
 		super();
 	}
 	
-	public DataObjectBean(String id, String uniqueProcessId, String objectId,
+	public DataObjectEntity(String id, String uniqueProcessId, String objectId,
 			String instanceId, Object dataObject) {
 		super();
 		this.id = id;
