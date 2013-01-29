@@ -5,6 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.catify.processengine.core.data.dataobjects.TimerBean;
+
+/**
+ * The Class TimerEntity.
+ * 
+ * @author claus straube
+ * @author chistopher köster
+ */
 @Entity @Table(name="CATIFY_TIMER_SPI")
 public class TimerEntity {
 
@@ -14,7 +22,25 @@ public class TimerEntity {
 	private String actorRef;
 	private String processInstanceId;
 	
+	public TimerEntity() {
+		
+	}
 	
+	public TimerEntity(TimerBean timer) {
+		super();
+		this.timeToFire = timer.getTimeToFire();
+		this.actorRef = timer.getActorRef();
+		this.processInstanceId = timer.getProcessInstanceId();
+	}
+	
+	public TimerEntity(long timeToFire, String actorRef,
+			String processInstanceId) {
+		super();
+		this.timeToFire = timeToFire;
+		this.actorRef = actorRef;
+		this.processInstanceId = processInstanceId;
+	}
+
 	public long getId() {
 		return id;
 	}

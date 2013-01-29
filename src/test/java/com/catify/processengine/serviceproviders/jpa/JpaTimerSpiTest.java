@@ -22,6 +22,7 @@ public class JpaTimerSpiTest {
 	@Before
 	public void setUp() throws Exception {
 		this.spi = new JpaTimerSpi();
+		spi.getRepository().deleteAll();
 	}
 	
 	@Test
@@ -59,7 +60,7 @@ public class JpaTimerSpiTest {
 	@Test
 	public void testMapTimer() {
 		TimerBean bean = getTimerBean(123);
-		TimerEntity entity = spi.mapTimer(bean);
+		TimerEntity entity = new TimerEntity(bean);
 		assertNotNull(entity);
 		assertEquals(123, entity.getTimeToFire());
 		assertEquals(ACTOR_REF, entity.getActorRef());

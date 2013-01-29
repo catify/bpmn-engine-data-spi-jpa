@@ -1,5 +1,7 @@
 package com.catify.processengine.serviceproviders.jpa;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.catify.processengine.core.data.dataobjects.TimerBean;
@@ -11,53 +13,50 @@ import com.catify.processengine.serviceproviders.jpa.repositories.TimerRepositor
  * JPA implementation of the {@link TimerSPI}.
  * 
  * @author claus straube
+ * @author chistopher köster
  *
  */
 public class JpaTimerSpi extends TimerSPI {
 
-	private TimerRepository repository;
+	private TimerRepository timerRepository;
 	
 	public JpaTimerSpi() {
 		this.implementationId = "jpa-timer"; // set this id in spring
-		this.repository = (TimerRepository) AppContextFactory.load(TimerRepository.class);
+		this.timerRepository = (TimerRepository) AppContextFactory.load(TimerRepository.class);
 	}
 	
 	@Override
 	public void saveTimer(TimerBean timer) {
-		// TODO Auto-generated method stub
-
+		timerRepository.save(new TimerEntity(timer));
 	}
 
 	@Override
 	public List<TimerBean> loadDueTimers(String actorRef) {
-		// TODO Auto-generated method stub
-		return null;
+		List<TimerEntity> timerEntities = timerRepository.findByActorRefAndTimeToFireLessThanTimeNow(actorRef, new Date().getTime());
+		return createTimerBeans(timerEntities);
 	}
 
 	@Override
 	public void deleteTimer(String actorRef, String processInstanceId) {
-		// TODO Auto-generated method stub
-
+		timerRepository.delete(timerRepository.findByActorRefAndProcessInstanceId(actorRef, processInstanceId));
 	}
 	
 	/**
-	 * Maps the {@link TimerBean} to a {@link TimerEntity}.
-	 * 
-	 * @param bean the {@link TimerBean}
-	 * @return the {@link TimerEntity}
+	 * Creates timer beans from a list of timer entities.
+	 *
+	 * @param timerEntities the timer entities
+	 * @return the list of timer beans
 	 */
-	public TimerEntity mapTimer(TimerBean bean) {
-		TimerEntity entity = new TimerEntity();
-		
-		entity.setActorRef(bean.getActorRef());
-		entity.setTimeToFire(bean.getTimeToFire());
-		entity.setProcessInstanceId(bean.getProcessInstanceId());
-		
-		return entity;
+	private List<TimerBean> createTimerBeans(List<TimerEntity> timerEntities) {
+		List<TimerBean> timerBeans = new ArrayList<TimerBean>();	
+		for (TimerEntity timerEntity : timerEntities) {
+			timerBeans.add(new TimerBean(timerEntity.getTimeToFire(), timerEntity.getActorRef(), timerEntity.getProcessInstanceId()));
+		}
+		return timerBeans;
 	}
 
 	public TimerRepository getRepository() {
-		return repository;
+		return timerRepository;
 	}
 
 }

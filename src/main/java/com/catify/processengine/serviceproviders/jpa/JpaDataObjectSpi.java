@@ -25,7 +25,6 @@ public class JpaDataObjectSpi extends DataObjectSPI {
 	@Override
 	public void saveObject(String uniqueProcessId, String objectId,
 			String instanceId, Object dataObject) {
-		System.out.println(dataObjectRepository);
 		dataObjectRepository.save(new DataObjectEntity(getObjectKey(
 				uniqueProcessId, objectId, instanceId), uniqueProcessId,
 				objectId, instanceId, dataObject));
