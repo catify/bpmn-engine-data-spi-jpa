@@ -7,8 +7,15 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>data-spi-jpa</name>
-	<url>http://maven.apache.org</url>
+	<name>catify BPMN Engine Core - JPA Data Service Provider</name>
+
+	<url>http://www.catify.com</url>
+
+	<description>JPA service provider for the Data SPI of the catify BPMN Engine Core</description>
+
+	<scm>
+		<url>https://github.com/catify/bpmn-engine-data-spi-jpa.git</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
