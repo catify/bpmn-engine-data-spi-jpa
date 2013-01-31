@@ -10,8 +10,8 @@ import com.catify.processengine.serviceproviders.jpa.repositories.DataObjectRepo
  * JPA implementation of the {@link DataObjectSPI}.
  * 
  * @author claus straube
- * @author chistopher köster
- *
+ * @author christopher köster
+ * 
  */
 public class JpaDataObjectSpi extends DataObjectSPI {
 

@@ -13,8 +13,8 @@ import com.catify.processengine.serviceproviders.jpa.repositories.TimerRepositor
  * JPA implementation of the {@link TimerSPI}.
  * 
  * @author claus straube
- * @author chistopher köster
- *
+ * @author christopher köster
+ * 
  */
 public class JpaTimerSpi extends TimerSPI {
 

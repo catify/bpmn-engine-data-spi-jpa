@@ -11,7 +11,8 @@ import com.catify.processengine.core.data.dataobjects.TimerBean;
  * The Class TimerEntity.
  * 
  * @author claus straube
- * @author chistopher köster
+ * @author christopher köster
+ * 
  */
 @Entity @Table(name="CATIFY_TIMER_SPI")
 public class TimerEntity {

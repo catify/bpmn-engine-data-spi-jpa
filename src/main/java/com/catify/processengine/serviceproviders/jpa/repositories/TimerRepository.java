@@ -11,7 +11,8 @@ import com.catify.processengine.serviceproviders.jpa.beans.TimerEntity;
  * The Interface TimerRepository.
  * 
  * @author claus straube
- * @author chistopher köster
+ * @author christopher köster
+ * 
  */
 public interface TimerRepository extends CrudRepository<TimerEntity, Long> {
 
