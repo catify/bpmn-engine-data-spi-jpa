@@ -38,7 +38,13 @@ public class JpaTimerSpi extends TimerSPI {
 
 	@Override
 	public void deleteTimer(String actorRef, String processInstanceId) {
-		timerRepository.delete(timerRepository.findByActorRefAndProcessInstanceId(actorRef, processInstanceId));
+		TimerEntity timerEntity = timerRepository.findByActorRefAndProcessInstanceId(actorRef, processInstanceId);
+		// only try to delete timer entity existing timers
+		// this method needs to safely call the delete method for non existing nodes,
+		// because a 'cycle timer start event' will try to delete a trigger that has not been saved to db
+		if (timerEntity != null) {
+			timerRepository.delete(timerEntity);
+		}
 	}
 	
 	/**
