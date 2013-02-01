@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Index;
+
 import com.catify.processengine.core.data.dataobjects.TimerBean;
 
 /**
@@ -19,7 +21,10 @@ public class TimerEntity {
 
 	@Id @GeneratedValue
 	private long id;
+	
+	@Index(name = "TIME_TO_FIRE")
 	private long timeToFire;
+	
 	private String actorRef;
 	private String processInstanceId;
 	

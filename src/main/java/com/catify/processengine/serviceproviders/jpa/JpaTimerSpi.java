@@ -33,6 +33,7 @@ public class JpaTimerSpi extends TimerSPI {
 	@Override
 	public List<TimerBean> loadDueTimers(String actorRef) {
 		List<TimerEntity> timerEntities = timerRepository.findByActorRefAndTimeToFireLessThanTimeNow(actorRef, new Date().getTime());
+		timerRepository.delete(timerEntities);
 		return createTimerBeans(timerEntities);
 	}
 
