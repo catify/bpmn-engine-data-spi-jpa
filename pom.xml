@@ -123,7 +123,7 @@
 			</plugin>
 			
 			<!-- gpg -->
-			<plugin>
+			<!-- 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<executions>
@@ -133,6 +133,17 @@
 							<keyname>catify</keyname>
 						</configuration>
 						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+			<plugin>
+				<groupId>org.kohsuke</groupId>
+				<artifactId>pgp-maven-plugin</artifactId>
+				<executions>
+					<execution>
 						<goals>
 							<goal>sign</goal>
 						</goals>
